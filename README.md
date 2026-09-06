@@ -1,6 +1,6 @@
 # Pawlido Instagram autopublisher
 
-This repository publishes Pawlido Reels and carousels from GitHub Actions. The
+This repository publishes Pawlido product Reels from GitHub Actions. The
 queue is limited to two posts a day (12:30 and 20:30 Asia/Dubai). Every caption
 includes the product code so customers can search it on pawlido.com.
 
@@ -37,11 +37,14 @@ From the main Pawlido project run:
 node ops/generate_music.js
 node ops/ig_reschedule.js YYYY-MM-DD
 node ops/ig_music.js
+node ops/ig_photo_reels.js
 node ops/ig_deploy.js
 ```
 
 The three music beds are original, sample-free Pawlido tracks. Their provenance
-is recorded in `ops/music/licenses.json`. Validate locally with:
+is recorded in `ops/music/licenses.json`. Product-card sets are converted into
+9:16 catalog Reels, so photo-led posts also carry audio without manual editing.
+Validate locally with:
 
 ```text
 node ig_deploy/publish.js --validate
