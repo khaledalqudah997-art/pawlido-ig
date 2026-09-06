@@ -58,6 +58,7 @@ async function publish(p,i){const urls=p.media.map(f=>BASE+'/'+f),k=key(p);
   if(CHECK_AUTH){
     const me=await api('/me?fields=id,username,account_type');
     const expectedUser=process.env.EXPECTED_IG_USERNAME||'pawlido.store';
+    log('AUTH IDENTITY '+(me.username||'unknown')+' '+(me.id||'unknown')+' '+(me.account_type||''));
     if(String(me.id)!==String(process.env.IG_USER_ID))throw new Error('Instagram user ID mismatch');
     if(String(me.username||'').toLowerCase()!==expectedUser.toLowerCase())throw new Error('Instagram username mismatch');
     log('AUTH OK '+me.username+' '+me.id+' '+(me.account_type||''));return;
