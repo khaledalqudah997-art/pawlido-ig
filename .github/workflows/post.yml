@@ -24,10 +24,17 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: validate queue and media
         run: node publish.js --validate
+
+      - name: verify exact Instagram account
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          EXPECTED_IG_USERNAME: pawlido.store
+        run: node publish.js --check-auth
 
       - name: publish whatever is due
         env:

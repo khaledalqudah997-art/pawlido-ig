@@ -3,6 +3,7 @@
 const fs=require('fs'),path=require('path');
 const PLAN=path.join(__dirname,'ig_plan.json'), SF=path.join(__dirname,'ig_scheduled.json');
 const A=process.argv.slice(2), DRY=A.includes('--dry'), VALIDATE=A.includes('--validate');
+const CHECK_AUTH=A.includes('--check-auth');
 const INDEX=A.includes('--index')?Number(A[A.indexOf('--index')+1]):null;
 const FORCE=A.includes('--force'), MIN_GAP=Number(process.env.MIN_GAP_MIN||120)*60000;
 const VERSION=process.env.GRAPH_VERSION||'v26.0';
@@ -52,8 +53,15 @@ async function publish(p,i){const urls=p.media.map(f=>BASE+'/'+f),k=key(p);
   const out=await api('/'+process.env.IG_USER_ID+'/media_publish',{creation_id:creation});log('PUBLISHED '+out.id);return {id:out.id,recovered:false}
 }
 (async()=>{
-  const P=read(PLAN,null),check=validate(P,!DRY&&!VALIDATE);if(VALIDATE){console.log(JSON.stringify(check));return}
+  const P=read(PLAN,null),check=validate(P,!DRY&&!VALIDATE&&!CHECK_AUTH);if(VALIDATE){console.log(JSON.stringify(check));return}
   if(!DRY&&(!process.env.IG_TOKEN||!process.env.IG_USER_ID))throw new Error('IG_TOKEN and IG_USER_ID are required');
+  if(CHECK_AUTH){
+    const me=await api('/me?fields=id,username,account_type');
+    const expectedUser=process.env.EXPECTED_IG_USERNAME||'pawlido.store';
+    if(String(me.id)!==String(process.env.IG_USER_ID))throw new Error('Instagram user ID mismatch');
+    if(String(me.username||'').toLowerCase()!==expectedUser.toLowerCase())throw new Error('Instagram username mismatch');
+    log('AUTH OK '+me.username+' '+me.id+' '+(me.account_type||''));return;
+  }
   const S=loadState();S.version=2;S.records=S.records||{};
   const done=p=>S.records[key(p)]?.status==='published';
   let i=INDEX;
