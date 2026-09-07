@@ -1,1 +1,12 @@
-[]
+{
+  "version": 2,
+  "records": {
+    "REEL:PW1005:2026-09-07T12:30+04": {
+      "status": "published",
+      "at": "2026-09-07T08:59:49.040Z",
+      "mediaId": "18377283430230217",
+      "recovered": false,
+      "code": "PW1005"
+    }
+  }
+}
