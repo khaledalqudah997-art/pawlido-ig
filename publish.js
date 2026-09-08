@@ -8,7 +8,7 @@ const INDEX=A.includes('--index')?Number(A[A.indexOf('--index')+1]):null;
 const FORCE=A.includes('--force'), MIN_GAP=Number(process.env.MIN_GAP_MIN||120)*60000;
 const VERSION=process.env.GRAPH_VERSION||'v26.0';
 const BASE=(process.env.MEDIA_BASE||(process.env.GITHUB_REPOSITORY?
-  'https://cdn.jsdelivr.net/gh/'+process.env.GITHUB_REPOSITORY+'@'+(process.env.GITHUB_REF_NAME||'main')+'/media':''))
+  'https://cdn.jsdelivr.net/gh/'+process.env.GITHUB_REPOSITORY+'@'+(process.env.GITHUB_SHA||process.env.GITHUB_REF_NAME||'main')+'/media':''))
   .replace(/\/+$/,'');
 const log=m=>console.log(new Date().toISOString()+' '+m);
 const read=(f,d)=>{try{return JSON.parse(fs.readFileSync(f,'utf8'))}catch{return d}};
