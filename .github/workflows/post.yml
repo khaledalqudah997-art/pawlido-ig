@@ -5,7 +5,9 @@ name: post to instagram
 # publish.js decides whether anything is actually due, and posts at most one.
 # GitHub can delay scheduled runs by 5-20 minutes under load. That is fine here.
 on:
-  workflow_dispatch:          # schedule paused by user on 2026-10-25
+  schedule:
+    - cron: '*/15 4-19 * * *'
+  workflow_dispatch:          # the Run workflow button, for a manual push
 
 permissions:
   contents: write             # so the run can commit ig_scheduled.json back
