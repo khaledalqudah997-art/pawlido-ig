@@ -1,5 +1,5 @@
 {
-  "generatedFor": "2026-09-28 .. 2026-11-07 (Asia/Dubai)",
+  "generatedFor": "2026-09-28 .. 2026-11-07 (Asia/Dubai), plus PW2673 at 2026-10-25 14:00",
   "slots": [
     "12:30",
     "20:30"
@@ -7,7 +7,7 @@
   "carouselAt": [],
   "rampDays": 0,
   "rampSlots": [],
-  "posts": 82,
+  "posts": 83,
   "plan": [
     {
       "day": "2026-09-28",
@@ -995,6 +995,21 @@
       "url": "https://www.pawlido.com/products/7pcs-pet-grooming-kit-self-cleaning-brush-shedding-with-nail",
       "music": "Pixabay Funny Pets — HarumachiMusic",
       "photoReel": true
+    },
+    {
+      "day": "2026-10-25",
+      "time": "14:00",
+      "kind": "REEL",
+      "code": "PW2673",
+      "col": "Grooming & Care",
+      "productTitle": "Reusable Pet Hair Cleaning Gloves",
+      "caption": "Pet hair on the sofa? 🐾\nThese reusable fabric gloves help lift loose pet hair from suitable furniture and fabric surfaces. See the available options on pawlido.com.\n\nشعر الحيوانات على الكنبة؟ 🐾\nقفازات قماشية قابلة لإعادة الاستخدام تساعد على جمع الشعر المتساقط عن الأثاث والأسطح القماشية المناسبة. شاهد الخيارات المتاحة على pawlido.com.\n\nProduct code PW2673. Search this code on pawlido.com.\n\n#pawlido #pethair #petcare #uaepets #reels #petsofinstagram",
+      "media": [
+        "ig_reels_two_weeks/PW2673_v3.mp4"
+      ],
+      "url": "https://www.pawlido.com/products/cat-hair-cleaner-removal-and-adsorption-artifact-brush",
+      "music": "approved V3 embedded music; no voice-over",
+      "photoReel": false
     },
     {
       "day": "2026-10-25",
