@@ -2,6 +2,7 @@
 // Reliable Pawlido Instagram publisher for GitHub Actions.
 const fs=require('fs'),path=require('path');
 const PLAN=path.join(__dirname,'ig_plan.json'), SF=path.join(__dirname,'ig_scheduled.json');
+const PAUSE=path.join(__dirname,'ORGANIC_PUBLISHING_PAUSED');
 const A=process.argv.slice(2), DRY=A.includes('--dry'), VALIDATE=A.includes('--validate');
 const CHECK_AUTH=A.includes('--check-auth');
 const INDEX=A.includes('--index')?Number(A[A.indexOf('--index')+1]):null;
@@ -53,6 +54,7 @@ async function publish(p,i){const urls=p.media.map(f=>BASE+'/'+f),k=key(p);
   const out=await api('/'+process.env.IG_USER_ID+'/media_publish',{creation_id:creation});log('PUBLISHED '+out.id);return {id:out.id,recovered:false}
 }
 (async()=>{
+  if(fs.existsSync(PAUSE)&&!VALIDATE){log('ORGANIC PUBLISHING PAUSED — no Instagram API action taken');return}
   const P=read(PLAN,null),check=validate(P,!DRY&&!VALIDATE&&!CHECK_AUTH);if(VALIDATE){console.log(JSON.stringify(check));return}
   if(!DRY&&(!process.env.IG_TOKEN||!process.env.IG_USER_ID))throw new Error('IG_TOKEN and IG_USER_ID are required');
   if(CHECK_AUTH){
